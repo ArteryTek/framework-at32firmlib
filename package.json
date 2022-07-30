@@ -1,0 +1,6 @@
+{
+    "description": "ArteryTek Firmware Library",
+    "name": "framework-at32firmlib",
+    "system": "all",
+    "version": "2.0.0"
+}
