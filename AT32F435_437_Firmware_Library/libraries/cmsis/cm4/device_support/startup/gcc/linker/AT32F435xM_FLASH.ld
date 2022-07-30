@@ -49,6 +49,7 @@ SECTIONS
   /* The program code and other data goes into FLASH */
   .text :
   {
+    _stext = .;
     . = ALIGN(4);
     *(.text)           /* .text sections (code) */
     *(.text*)          /* .text* sections (code) */
@@ -125,6 +126,7 @@ SECTIONS
     *(.bss)
     *(.bss*)
     *(COMMON)
+    _sstack = .;
 
     . = ALIGN(4);
     _ebss = .;         /* define a global symbol at bss end */

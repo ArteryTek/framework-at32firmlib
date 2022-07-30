@@ -1,14 +1,13 @@
 # Firmware Library for ArteryTek AT32 chips
-===========================================
 
-## Quick links
+### Quick links
 
-## Introduction
+### Introduction
 
-## Installation
+### Installation
 
-## Using PlatformIO
+### Using PlatformIO
 
-## Issues and support
+### Issues and support
 
-## License and credits
+### License and credits
