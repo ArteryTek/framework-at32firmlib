@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_usart.h
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    at32f413 usart header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -318,9 +316,13 @@ typedef struct
 
 #define USART1                           ((usart_type *) USART1_BASE)
 #define USART2                           ((usart_type *) USART2_BASE)
+#if defined (AT32F413Rx) || defined (AT32F413Cx) || defined (AT32FEBKC8T7)
 #define USART3                           ((usart_type *) USART3_BASE)
+#endif
+#if defined (AT32F413Rx)
 #define UART4                            ((usart_type *) UART4_BASE)
 #define UART5                            ((usart_type *) UART5_BASE)
+#endif
 
 /** @defgroup USART_exported_functions
   * @{

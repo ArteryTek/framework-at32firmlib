@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_tmr.h
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    at32f413 tmr header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -238,7 +236,7 @@ typedef enum
 {
   TMR_CC_CHANNEL_MAPPED_DIRECT           = 0x01, /*!< channel is configured as input, mapped direct */
   TMR_CC_CHANNEL_MAPPED_INDIRECT         = 0x02, /*!< channel is configured as input, mapped indirect */
-  TMR_CC_CHANNEL_MAPPED_STI              = 0x03  /*!< channel is configured as input, mapped trc */
+  TMR_CC_CHANNEL_MAPPED_STI              = 0x03  /*!< channel is configured as input, mapped sti */
 } tmr_input_direction_mapped_type;
 
 /**
@@ -833,11 +831,16 @@ typedef struct
 #define TMR2                             ((tmr_type *) TMR2_BASE)
 #define TMR3                             ((tmr_type *) TMR3_BASE)
 #define TMR4                             ((tmr_type *) TMR4_BASE)
+#if defined (AT32F413TBU7) || defined (AT32F413Rx) || defined (AT32F413Cx) || \
+    defined (AT32F413Kx)
 #define TMR5                             ((tmr_type *) TMR5_BASE)
+#if defined (AT32F413CCU7) || defined (AT32F413CCT7) || defined (AT32F413RCT7)
 #define TMR8                             ((tmr_type *) TMR8_BASE)
+#endif
 #define TMR9                             ((tmr_type *) TMR9_BASE)
 #define TMR10                            ((tmr_type *) TMR10_BASE)
 #define TMR11                            ((tmr_type *) TMR11_BASE)
+#endif
 
 /** @defgroup TMR_exported_functions
   * @{
