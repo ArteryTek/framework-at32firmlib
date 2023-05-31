@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     system_at32f435_437.c
-  * @version  v2.0.9
-  * @date     2022-06-28
   * @brief    contains all the functions for cmsis cortex-m4 system source file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -37,7 +35,7 @@
 /** @addtogroup AT32F435_437_system_private_defines
   * @{
   */
-#define VECT_TAB_OFFSET                  0x0 /*!< vector table base offset field. this value must be a multiple of 0x200. */
+#define VECT_TAB_OFFSET                  0x0 /*!< vector table base offset field. this value must be a multiple of 0x400. */
 /**
   * @}
   */

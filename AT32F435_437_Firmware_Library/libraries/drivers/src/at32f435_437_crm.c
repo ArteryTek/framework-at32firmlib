@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f435_437_crm.c
-  * @version  v2.0.9
-  * @date     2022-06-28
   * @brief    contains all the functions for the crm firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -282,6 +280,7 @@ void crm_periph_reset(crm_periph_reset_type value, confirm_state new_state)
   *         - CRM_USART6_PERIPH_LOWPOWER    - CRM_ADC1_PERIPH_LOWPOWER      - CRM_ADC2_PERIPH_LOWPOWER     - CRM_ADC3_PERIPH_LOWPOWER
   *         - CRM_SPI1_PERIPH_LOWPOWER      - CRM_SPI4_PERIPH_LOWPOWER      - CRM_SCFG_PERIPH_LOWPOWER     - CRM_TMR9_PERIPH_LOWPOWER
   *         - CRM_TMR10_PERIPH_LOWPOWER     - CRM_TMR11_PERIPH_LOWPOWER     - CRM_TMR20_PERIPH_LOWPOWER    - CRM_ACC_PERIPH_LOWPOWER
+  *         - CRM_FLASH_PERIPH_LOWPOWER     - CRM_SRAM1_PERIPH_LOWPOWER     - CRM_SRAM2_PERIPH_LOWPOWER
   * @param  new_state (TRUE or FALSE)
   * @retval none
   */
@@ -469,6 +468,7 @@ void crm_ahb_div_set(crm_ahb_div_type value)
 
 /**
   * @brief  set crm apb1 division
+  * @note   the maximum frequency of APB1/APB2 clock is 144 MHz
   * @param  value
   *         this parameter can be one of the following values:
   *         - CRM_APB1_DIV_1
@@ -485,6 +485,7 @@ void crm_apb1_div_set(crm_apb1_div_type value)
 
 /**
   * @brief  set crm apb2 division
+  * @note   the maximum frequency of APB1/APB2 clock is 144 MHz
   * @param  value
   *         this parameter can be one of the following values:
   *         - CRM_APB2_DIV_1
@@ -624,7 +625,7 @@ void crm_clkout_to_tmr10_enable(confirm_state new_state)
   *                          pll_ms
   *
   *                       pll_rcs_freq * pll_ns
-  *         500mhz <=  -------------------------------- <= 1000mhz
+  *         500mhz <=  -------------------------------- <= 1200mhz
   *                               pll_ms
   * @param  clock_source
   *         this parameter can be one of the following values:
@@ -646,6 +647,10 @@ void crm_pll_config(crm_pll_clock_source_type clock_source, uint16_t pll_ns, \
                     uint16_t pll_ms, crm_pll_fr_type pll_fr)
 {
   /* config pll clock source */
+  if(clock_source == CRM_PLL_SOURCE_HICK)
+  {
+    CRM->misc1_bit.hickdiv = CRM_HICK48_NODIV;
+  }
   CRM->pllcfg_bit.pllrcs = clock_source;
 
   /* config pll multiplication factor */
@@ -889,7 +894,7 @@ void crm_interrupt_enable(uint32_t crm_int, confirm_state new_state)
   *                          pll_ms
   *
   *                       pll_rcs_freq * pll_ns
-  *         500mhz <=  -------------------------------- <= 1000mhz
+  *         500mhz <=  -------------------------------- <= 1200mhz
   *                               pll_ms
   * @param  pll_rcs
   *         this parameter can be one of the following values:
@@ -904,7 +909,7 @@ void crm_interrupt_enable(uint32_t crm_int, confirm_state new_state)
 error_status crm_pll_parameter_calculate(crm_pll_clock_source_type pll_rcs, uint32_t target_sclk_freq, \
                                          uint16_t *ret_ms, uint16_t *ret_ns, uint16_t *ret_fr)
 {
-  uint32_t pll_rcs_freq = 0, ns = 0, ms = 0, fr = 0;
+  int32_t pll_rcs_freq = 0, ns = 0, ms = 0, fr = 0;
   uint32_t ms_min = 0, ms_max = 0, error_min = 0xFFFFFFFF;
   uint32_t result = 0, absolute_value = 0;
 
@@ -933,13 +938,13 @@ error_status crm_pll_parameter_calculate(crm_pll_clock_source_type pll_rcs, uint
   /* polling pll parameters */
   for(ms = ms_min; ms <= ms_max; ms ++)
   {
-    for(fr = 0; fr <= 5; fr ++)
+    for(fr = 5; fr >= 0; fr --)
     {
       for(ns = 31; ns <= 500; ns ++)
       {
         result = (pll_rcs_freq * ns) / (ms);
         /* check vco frequency range, accuracy with khz */
-        if((result < 500000U) || (result > 1000000U))
+        if((result < 500000U) || (result > 1200000U))
         {
           continue;
         }
