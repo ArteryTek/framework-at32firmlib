@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_can.h
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    at32f413 can header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -936,7 +934,10 @@ typedef struct
   */
 
 #define CAN1                             ((can_type *) CAN1_BASE)
+#if defined (AT32F413TBU7) || defined (AT32F413Rx) || defined (AT32F413Cx) || \
+    defined (AT32F413Kx)
 #define CAN2                             ((can_type *) CAN2_BASE)
+#endif
 
 /** @defgroup CAN_exported_functions
   * @{

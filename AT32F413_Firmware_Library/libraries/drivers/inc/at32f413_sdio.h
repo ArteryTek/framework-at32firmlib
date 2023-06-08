@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_sdio.h
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    at32f413 sdio header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -569,7 +567,10 @@ typedef struct
   * @}
   */
 
+#if defined (AT32F413TBU7) || defined (AT32F413Rx) || defined (AT32F413Cx) || \
+    defined (AT32F413Kx)
 #define SDIO1                            ((sdio_type *) SDIO1_BASE)
+#endif
 
 /** @defgroup SDIO_exported_functions
   * @{

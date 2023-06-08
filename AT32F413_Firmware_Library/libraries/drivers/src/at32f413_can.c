@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_can.c
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    contains all the functions for the can firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -55,11 +53,14 @@ void can_reset(can_type* can_x)
     crm_periph_reset(CRM_CAN1_PERIPH_RESET, TRUE);
     crm_periph_reset(CRM_CAN1_PERIPH_RESET, FALSE);
   }
+#if defined (AT32F413TBU7) || defined (AT32F413Rx) || defined (AT32F413Cx) || \
+    defined (AT32F413Kx)
   else if(can_x == CAN2)
   {
     crm_periph_reset(CRM_CAN2_PERIPH_RESET, TRUE);
     crm_periph_reset(CRM_CAN2_PERIPH_RESET, FALSE);
   }
+#endif
 }
 
 /**

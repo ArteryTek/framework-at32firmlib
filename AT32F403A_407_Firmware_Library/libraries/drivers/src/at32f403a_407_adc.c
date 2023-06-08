@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403a_407_adc.c
-  * @version  v2.1.1
-  * @date     2022-07-22
   * @brief    contains all the functions for the adc firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer

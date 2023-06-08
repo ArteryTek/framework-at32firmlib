@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_usb.c
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    contains the functions for the usb firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer

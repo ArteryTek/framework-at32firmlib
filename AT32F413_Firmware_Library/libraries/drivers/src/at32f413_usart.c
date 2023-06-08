@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f413_usart.c
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    contains all the functions for the usart firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -61,11 +59,14 @@ void usart_reset(usart_type* usart_x)
     crm_periph_reset(CRM_USART2_PERIPH_RESET, TRUE);
     crm_periph_reset(CRM_USART2_PERIPH_RESET, FALSE);
   }
+#if defined (AT32F413Rx) || defined (AT32F413Cx) || defined (AT32FEBKC8T7)
   else if(usart_x == USART3)
   {
     crm_periph_reset(CRM_USART3_PERIPH_RESET, TRUE);
     crm_periph_reset(CRM_USART3_PERIPH_RESET, FALSE);
   }
+#endif
+#if defined (AT32F413Rx)
   else if(usart_x == UART4)
   {
     crm_periph_reset(CRM_UART4_PERIPH_RESET, TRUE);
@@ -76,6 +77,7 @@ void usart_reset(usart_type* usart_x)
     crm_periph_reset(CRM_UART5_PERIPH_RESET, TRUE);
     crm_periph_reset(CRM_UART5_PERIPH_RESET, FALSE);
   }
+#endif
 }
 
 /**

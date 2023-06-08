@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f435_437_scfg.c
-  * @version  v2.0.9
-  * @date     2022-06-28
   * @brief    contains all the functions for the system config firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
