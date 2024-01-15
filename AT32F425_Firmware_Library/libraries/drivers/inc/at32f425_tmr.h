@@ -801,7 +801,8 @@ typedef struct
       __IO uint32_t brkv                 : 1; /* [13] */
       __IO uint32_t aoen                 : 1; /* [14] */
       __IO uint32_t oen                  : 1; /* [15] */
-      __IO uint32_t reserved1            : 16; /* [31:16] */
+      __IO uint32_t bkf                  : 4; /* [19:16] */
+      __IO uint32_t reserved1            : 12;/* [31:20] */
     } brk_bit;
   };
   /**
@@ -939,6 +940,7 @@ void tmr_force_output_set(tmr_type *tmr_x,  tmr_channel_select_type tmr_channel,
 void tmr_dma_control_config(tmr_type *tmr_x, tmr_dma_transfer_length_type dma_length, \
                             tmr_dma_address_type dma_base_address);
 void tmr_brkdt_config(tmr_type *tmr_x, tmr_brkdt_config_type *brkdt_struct);
+void tmr_brk_filter_value_set(tmr_type *tmr_x, uint8_t filter_value);
 void tmr_iremap_config(tmr_type *tmr_x, tmr_input_remap_type input_remap);
 
 /**

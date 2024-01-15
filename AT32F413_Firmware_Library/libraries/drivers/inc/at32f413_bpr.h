@@ -116,9 +116,7 @@ typedef enum
   BPR_RTC_OUTPUT_CLOCK_CAL_BEFORE        = 0x080, /*!< output clock before calibration */
   BPR_RTC_OUTPUT_ALARM                   = 0x100, /*!< output alarm event with pluse mode */
   BPR_RTC_OUTPUT_SECOND                  = 0x300, /*!< output second event with pluse mode */
-  BPR_RTC_OUTPUT_CLOCK_CAL_AFTER         = 0x480, /*!< output clock after calibration */
-  BPR_RTC_OUTPUT_ALARM_TOGGLE            = 0x900, /*!< output alarm event with toggle mode */
-  BPR_RTC_OUTPUT_SECOND_TOGGLE           = 0xB00  /*!< output second event with toggle mode */
+  BPR_RTC_OUTPUT_CLOCK_CAL_AFTER         = 0x480  /*!< output clock after calibration */
 } bpr_rtc_output_type;
 
 /**

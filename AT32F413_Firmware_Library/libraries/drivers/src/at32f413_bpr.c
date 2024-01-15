@@ -162,8 +162,6 @@ void bpr_data_write(bpr_data_type bpr_data, uint16_t data_value)
   *         - BPR_RTC_OUTPUT_ALARM: output alarm event with pluse mode.
   *         - BPR_RTC_OUTPUT_SECOND: output second event with pluse mode.
   *         - BPR_RTC_OUTPUT_CLOCK_CAL_AFTER: output clock after calibration.
-  *         - BPR_RTC_OUTPUT_ALARM_TOGGLE: output alarm event with toggle mode.
-  *         - BPR_RTC_OUTPUT_SECOND_TOGGLE: output second event with toggle mode.
   * @retval none
   */
 void bpr_rtc_output_select(bpr_rtc_output_type output_source)

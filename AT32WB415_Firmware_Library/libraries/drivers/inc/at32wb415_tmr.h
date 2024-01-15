@@ -390,6 +390,15 @@ typedef enum
 }tmr_wp_level_type;
 
 /**
+  * @brief tmr output channel switch selection type
+  */
+typedef enum
+{
+  TMR_CH_SWITCH_SELECT_EXT               = 0x00, /*!< tmr output channel switch select ext pin */
+  TMR_CH_SWITCH_SELECT_CXORAW_OFF        = 0x01, /*!< tmr output channel switch select cxoraw off signal */
+}tmr_ch_switch_select_type ;
+
+/**
   * @brief tmr output config type
   */
 typedef struct
@@ -487,7 +496,7 @@ typedef struct
     struct
     {
       __IO uint32_t smsel                : 3; /* [2:0] */
-      __IO uint32_t reserved1            : 1; /* [3] */
+      __IO uint32_t cossel               : 1; /* [3] */
       __IO uint32_t stis                 : 3; /* [6:4] */
       __IO uint32_t sts                  : 1; /* [7] */
       __IO uint32_t esf                  : 4; /* [11:8] */

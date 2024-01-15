@@ -1714,6 +1714,19 @@ void tmr_brkdt_config(tmr_type *tmr_x, tmr_brkdt_config_type *brkdt_struct)
 }
 
 /**
+  * @brief  set tmr break input filter value
+  * @param  tmr_x: select the tmr peripheral.
+  *         this parameter can be one of the following values:
+  *         TMR1, TMR15, TMR16, TMR17
+  * @param  filter_value (0x0~0xf)
+  * @retval none
+  */
+void tmr_brk_filter_value_set(tmr_type *tmr_x, uint8_t filter_value)
+{
+  tmr_x->brk_bit.bkf = filter_value;
+}
+
+/**
   * @brief  set tmr14 input channel remap
   * @param  tmr_x: select the tmr peripheral.
   *         this parameter can be one of the following values:
