@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_flash.c
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    contains all the functions for the flash firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -636,7 +634,7 @@ flash_status_type flash_slib_enable(uint32_t pwd, uint16_t start_sector, uint16_
   flash_status_type status = FLASH_OPERATE_DONE;
 
   /*check range param limits*/
-  if((start_sector>=inst_start_sector) || ((inst_start_sector > end_sector) && \
+  if((start_sector > inst_start_sector) || ((inst_start_sector > end_sector) && \
      (inst_start_sector != 0x7FF)) || (start_sector > end_sector))
     return FLASH_PROGRAM_ERROR;
 

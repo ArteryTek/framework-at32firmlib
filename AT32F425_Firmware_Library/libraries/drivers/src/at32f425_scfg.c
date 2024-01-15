@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_scfg.c
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    contains all the functions for the system config firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -57,8 +55,6 @@ void scfg_reset(void)
   * @param  source
   *         this parameter can be one of the following values:
   *         - SCFG_IR_SOURCE_TMR10
-  *         - SCFG_IR_SOURCE_USART1
-  *         - SCFG_IR_SOURCE_USART2
   * @param  polarity
   *         this parameter can be one of the following values:
   *         - SCFG_IR_POLARITY_NO_AFFECTE
@@ -79,9 +75,13 @@ void scfg_infrared_config(scfg_ir_source_type source, scfg_ir_polarity_type pola
   *         - SCFG_MEM_MAP_BOOT_MEMORY
   *         - SCFG_MEM_MAP_INTERNAL_SRAM
   */
-uint8_t scfg_mem_map_get(void)
+scfg_mem_map_type scfg_mem_map_get(void)
 {
-  return (uint8_t)SCFG->cfg1_bit.mem_map_sel ;
+  if(SCFG->cfg1_bit.mem_map_sel & 0x1)
+  {
+    return (scfg_mem_map_type)SCFG->cfg1_bit.mem_map_sel;
+  }
+  return SCFG_MEM_MAP_MAIN_MEMORY;
 }
 
 /**

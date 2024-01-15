@@ -31,8 +31,9 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 /* Specify the memory areas */
 MEMORY
 {
-FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 1000K
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 1024K
 RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 96K
+SPIM (rx)       : ORIGIN = 0x08400000, LENGTH = 16384K
 }
 
 /* Define output sections */
@@ -115,6 +116,19 @@ SECTIONS
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
   } >RAM AT> FLASH
+
+  _spim_init_base = LOADADDR(.spim);
+  _spim_init_length = SIZEOF(.spim);
+  
+  .spim :
+  {
+    . = ALIGN(4);
+    _spim_start = .;        /* create a global symbol at spim start */
+    *(.spim)                /* .spim sections */
+    *(.spim*)               /* .spim* sections */
+    . = ALIGN(4);
+    _spim_end = .;         /* define a global symbols at end of spim */
+  } >SPIM
 
   /* Uninitialized data section */
   . = ALIGN(4);

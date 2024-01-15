@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403_debug.c
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    contains all the functions for the debug firmware library
   **************************************************************************
   *                       Copyright notice & Disclaimer

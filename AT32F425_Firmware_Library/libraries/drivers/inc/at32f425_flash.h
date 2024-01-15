@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_flash.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 flash header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -149,7 +147,7 @@ extern "C" {
   *         - FLASH_WAIT_CYCLE_2
   *         - FLASH_WAIT_CYCLE_3
   */
-#define flash_psr_set(wtcyc)     (FLASH->psr |= (uint32_t)(0x150 | wtcyc))
+#define flash_psr_set(wtcyc)     (FLASH->psr = (uint32_t)(0x150 | wtcyc))
 
 /** @defgroup FLASH_exported_types
   * @{
@@ -192,13 +190,13 @@ typedef struct
     struct
     {
       __IO uint32_t wtcyc                : 3; /* [2:0] */
-      __IO uint32_t hfcyc_en             : 1; /* [3] */
+      __IO uint32_t reserved1            : 1; /* [3] */
       __IO uint32_t pft_en               : 1; /* [4] */
       __IO uint32_t pft_enf              : 1; /* [5] */
       __IO uint32_t pft_en2              : 1; /* [6] */
       __IO uint32_t pft_enf2             : 1; /* [7] */
       __IO uint32_t pft_lat_dis          : 1; /* [8] */
-      __IO uint32_t reserved1            : 23;/* [31:9] */
+      __IO uint32_t reserved2            : 23;/* [31:9] */
     } psr_bit;
   };
 

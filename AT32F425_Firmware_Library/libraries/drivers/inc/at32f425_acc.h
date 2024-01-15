@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_acc.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 acc header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -181,6 +179,7 @@ uint16_t acc_read_c1(void);
 uint16_t acc_read_c2(void);
 uint16_t acc_read_c3(void);
 flag_status acc_flag_get(uint16_t acc_flag);
+flag_status acc_interrupt_flag_get(uint16_t acc_flag);
 void acc_flag_clear(uint16_t acc_flag);
 
 /**

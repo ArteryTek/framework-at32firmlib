@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403_sdio.h
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    at32f403 sdio header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -568,8 +566,9 @@ typedef struct
 /**
   * @}
   */
-
+#if defined (AT32F403Zx) || defined (AT32F403Vx) || defined (AT32F403Rx)
 #define SDIO1                            ((sdio_type *) SDIO1_BASE)
+#endif
 #define SDIO2                            ((sdio_type *) SDIO2_BASE)
 
 /** @defgroup SDIO_exported_functions
@@ -588,6 +587,7 @@ void sdio_clock_enable(sdio_type *sdio_x, confirm_state new_state);
 void sdio_dma_enable(sdio_type *sdio_x, confirm_state new_state);
 void sdio_interrupt_enable(sdio_type *sdio_x, uint32_t int_opt,  confirm_state new_state);
 flag_status sdio_flag_get(sdio_type *sdio_x, uint32_t flag);
+flag_status sdio_interrupt_flag_get(sdio_type *sdio_x, uint32_t flag);
 void sdio_flag_clear(sdio_type *sdio_x, uint32_t flag);
 void sdio_command_config(sdio_type *sdio_x, sdio_command_struct_type *command_struct);
 void sdio_command_state_machine_enable(sdio_type *sdio_x, confirm_state new_state);

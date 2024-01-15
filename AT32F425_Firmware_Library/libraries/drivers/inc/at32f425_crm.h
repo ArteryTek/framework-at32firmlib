@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_crm.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 crm header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -145,7 +143,7 @@ typedef enum
 typedef enum
 {
   /* ahb periph */
-	CRM_OTGFS1_PERIPH_RESET                = MAKE_VALUE(0x28, 12), /*!< otgfs1 periph reset */
+  CRM_OTGFS1_PERIPH_RESET                = MAKE_VALUE(0x28, 12), /*!< otgfs1 periph reset */
   CRM_GPIOA_PERIPH_RESET                 = MAKE_VALUE(0x28, 17), /*!< gpioa periph reset */
   CRM_GPIOB_PERIPH_RESET                 = MAKE_VALUE(0x28, 18), /*!< gpiob periph reset */
   CRM_GPIOC_PERIPH_RESET                 = MAKE_VALUE(0x28, 19), /*!< gpioc periph reset */
@@ -864,6 +862,7 @@ void crm_reset(void);
 void crm_lext_bypass(confirm_state new_state);
 void crm_hext_bypass(confirm_state new_state);
 flag_status crm_flag_get(uint32_t flag);
+flag_status crm_interrupt_flag_get(uint32_t flag);
 error_status crm_hext_stable_wait(void);
 void crm_hick_clock_trimming_set(uint8_t trim_value);
 void crm_hick_clock_calibration_set(uint8_t cali_value);

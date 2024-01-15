@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f421_scfg.h
-  * @version  v2.0.7
-  * @date     2022-06-28
   * @brief    at32f421 system config header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -57,9 +55,7 @@ extern "C" {
   */
 typedef enum
 {
-  SCFG_IR_SOURCE_TMR16                   = 0x00, /* infrared signal source select tmr16 */
-  SCFG_IR_SOURCE_USART1                  = 0x01, /* infrared signal source select usart1 */
-  SCFG_IR_SOURCE_USART2                  = 0x02  /* infrared signal source select usart2 */
+  SCFG_IR_SOURCE_TMR16                   = 0x00  /* infrared signal source select tmr16 */
 } scfg_ir_source_type;
 
 /**
@@ -165,6 +161,7 @@ typedef enum
 {
   SCFG_PORT_SOURCE_GPIOA                 = 0x00,
   SCFG_PORT_SOURCE_GPIOB                 = 0x01,
+  SCFG_PORT_SOURCE_GPIOC                 = 0x02,
   SCFG_PORT_SOURCE_GPIOF                 = 0x05,
 
 } scfg_port_source_type;

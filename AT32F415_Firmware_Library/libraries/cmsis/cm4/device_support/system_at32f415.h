@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     system_at32f415.h
-  * @version  v2.0.6
-  * @date     2022-06-28
   * @brief    cmsis cortex-m4 system header file.
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -46,6 +44,10 @@ extern "C" {
 #define HEXT_STABLE_DELAY                (5000u)
 #define PLL_STABLE_DELAY                 (500u)
 #define SystemCoreClock                  system_core_clock
+#define DUMMY_NOP()                      {__NOP();__NOP();__NOP();__NOP();__NOP(); \
+                                          __NOP();__NOP();__NOP();__NOP();__NOP(); \
+                                          __NOP();__NOP();__NOP();__NOP();__NOP(); \
+                                          __NOP();__NOP();__NOP();__NOP();__NOP();}
 
 /**
   * @}

@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     system_at32f403.c
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    contains all the functions for cmsis cortex-m4 system source file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -74,6 +72,9 @@ void SystemInit (void)
 
   /* wait hick stable */
   while(CRM->ctrl_bit.hickstbl != SET);
+
+  /* switch system clock(high to low) in smooth going  */
+  CRM->cfg_bit.ahbdiv = CRM_AHB_DIV_512;
 
   /* hick used as system clock */
   CRM->cfg_bit.sclksel = CRM_SCLK_HICK;

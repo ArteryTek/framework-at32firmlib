@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403_spi.h
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    at32f403 spi header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -448,7 +446,9 @@ typedef struct
 #define SPI1                            ((spi_type *) SPI1_BASE)
 #define SPI2                            ((spi_type *) SPI2_BASE)
 #define SPI3                            ((spi_type *) SPI3_BASE)
+#if defined (AT32F403Zx) || defined (AT32F403Vx)
 #define SPI4                            ((spi_type *) SPI4_BASE)
+#endif
 
 /** @defgroup SPI_exported_functions
   * @{
@@ -476,6 +476,7 @@ void spi_i2s_dma_receiver_enable(spi_type* spi_x, confirm_state new_state);
 void spi_i2s_data_transmit(spi_type* spi_x, uint16_t tx_data);
 uint16_t spi_i2s_data_receive(spi_type* spi_x);
 flag_status spi_i2s_flag_get(spi_type* spi_x, uint32_t spi_i2s_flag);
+flag_status spi_i2s_interrupt_flag_get(spi_type* spi_x, uint32_t spi_i2s_flag);
 void spi_i2s_flag_clear(spi_type* spi_x, uint32_t spi_i2s_flag);
 
 /**

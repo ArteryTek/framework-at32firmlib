@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403_flash.h
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    at32f403 flash header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -554,6 +552,8 @@ uint8_t flash_ssb_status_get(void);
 void flash_interrupt_enable(uint32_t flash_int, confirm_state new_state);
 void flash_spim_model_select(flash_spim_model_type mode);
 void flash_spim_encryption_range_set(uint32_t decode_address);
+void flash_spim_dummy_read(void);
+flash_status_type flash_spim_mass_program(uint32_t address, uint8_t *buf, uint32_t cnt);
 
 /**
   * @}

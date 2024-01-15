@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_i2c.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 i2c header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -457,6 +455,7 @@ void i2c_stop_generate(i2c_type *i2c_x);
 void i2c_data_send(i2c_type *i2c_x, uint8_t data);
 uint8_t i2c_data_receive(i2c_type *i2c_x);
 flag_status i2c_flag_get(i2c_type *i2c_x, uint32_t flag);
+flag_status i2c_interrupt_flag_get(i2c_type *i2c_x, uint32_t flag);
 void i2c_flag_clear(i2c_type *i2c_x, uint32_t flag);
 
 /**

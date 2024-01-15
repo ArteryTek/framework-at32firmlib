@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f403_bpr.h
-  * @version  v2.0.3
-  * @date     2022-06-28
   * @brief    at32f403 bpr header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -759,6 +757,7 @@ typedef struct
 
 void bpr_reset(void);
 flag_status bpr_flag_get(uint32_t flag);
+flag_status bpr_interrupt_flag_get(uint32_t flag);
 void bpr_flag_clear(uint32_t flag);
 void bpr_interrupt_enable(confirm_state new_state);
 uint16_t bpr_data_read(bpr_data_type bpr_data);

@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_exint.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 exint header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -210,6 +208,7 @@ void exint_default_para_init(exint_init_type *exint_struct);
 void exint_init(exint_init_type *exint_struct);
 void exint_flag_clear(uint32_t exint_line);
 flag_status exint_flag_get(uint32_t exint_line);
+flag_status exint_interrupt_flag_get(uint32_t exint_line);
 void exint_software_interrupt_event_generate(uint32_t exint_line);
 void exint_interrupt_enable(uint32_t exint_line, confirm_state new_state);
 void exint_event_enable(uint32_t exint_line, confirm_state new_state);

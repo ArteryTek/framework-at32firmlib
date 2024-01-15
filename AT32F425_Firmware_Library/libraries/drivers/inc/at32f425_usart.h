@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32f425_usart.h
-  * @version  v2.0.4
-  * @date     2022-06-28
   * @brief    at32f425 usart header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -382,6 +380,7 @@ void usart_irda_mode_enable(usart_type* usart_x, confirm_state new_state);
 void usart_irda_low_power_enable(usart_type* usart_x, confirm_state new_state);
 void usart_hardware_flow_control_set(usart_type* usart_x,usart_hardware_flow_control_type flow_state);
 flag_status usart_flag_get(usart_type* usart_x, uint32_t flag);
+flag_status usart_interrupt_flag_get(usart_type* usart_x, uint32_t flag);
 void usart_flag_clear(usart_type* usart_x, uint32_t flag);
 void usart_rs485_delay_time_config(usart_type* usart_x, uint8_t start_delay_time, uint8_t complete_delay_time);
 void usart_transmit_receive_pin_swap(usart_type* usart_x, confirm_state new_state);

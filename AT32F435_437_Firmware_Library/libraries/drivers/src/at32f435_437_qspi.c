@@ -40,6 +40,27 @@
   */
 
 /**
+  * @brief  deinitialize the qspi peripheral registers to their default reset values.
+  * @param  qspi_x: select the qspi peripheral.
+  *         this parameter can be one of the following values:
+  *         QSPI1,QSPI2.
+  * @retval none
+  */
+void qspi_reset(qspi_type* qspi_x)
+{
+  if(qspi_x == QSPI1)
+  {
+    crm_periph_reset(CRM_QSPI1_PERIPH_RESET, TRUE);
+    crm_periph_reset(CRM_QSPI1_PERIPH_RESET, FALSE);
+  }
+  else if(qspi_x == QSPI2)
+  {
+    crm_periph_reset(CRM_QSPI2_PERIPH_RESET, TRUE);
+    crm_periph_reset(CRM_QSPI2_PERIPH_RESET, FALSE);
+  }
+}
+
+/**
   * @brief  enable/disable encryption for qspi.
   * @note   the function must be configured only when qspi in command-port mode!!!
   * @param  qspi_x: select the qspi peripheral.
@@ -100,6 +121,8 @@ void qspi_clk_division_set(qspi_type* qspi_x, qspi_clk_div_type new_clkdiv)
   *         this parameter can be one of the following values:
   *         QSPI1,QSPI2.
   * @param  new_state (TRUE or FALSE)
+  *         TRUE: disable cache
+  *         FALSE: enable cache
   * @retval none
   */
 void qspi_xip_cache_bypass_set(qspi_type* qspi_x, confirm_state new_state)
@@ -131,7 +154,7 @@ void qspi_interrupt_enable(qspi_type* qspi_x, confirm_state new_state)
   *         - QSPI_RXFIFORDY_FLAG
   *         - QSPI_TXFIFORDY_FLAG
   *         - QSPI_CMDSTS_FLAG
-  * @retval the new state of usart_flag (SET or RESET).
+  * @retval the new state of the flag (SET or RESET).
   */
 flag_status qspi_flag_get(qspi_type* qspi_x, uint32_t flag)
 {
@@ -151,6 +174,24 @@ flag_status qspi_flag_get(qspi_type* qspi_x, uint32_t flag)
       break;
   }
   return bit_status;
+}
+
+/**
+  * @brief  get interrupt flags.
+  * @param  qspi_x: select the qspi peripheral.
+  *         this parameter can be one of the following values:
+  *         QSPI1,QSPI2.
+  * @param  flag: only QSPI_CMDSTS_FLAG valid.
+  * @retval the new state of the flag (SET or RESET).
+  */
+flag_status qspi_interrupt_flag_get(qspi_type* qspi_x, uint32_t flag)
+{
+  if(QSPI_CMDSTS_FLAG != flag)
+    return RESET;
+  if(qspi_x->cmdsts_bit.cmdsts && qspi_x->ctrl2_bit.cmdie)
+    return SET;
+  else
+    return RESET;
 }
 
 /**
@@ -251,21 +292,35 @@ void qspi_busy_config(qspi_type* qspi_x, qspi_busy_pos_type busy_pos)
   */
 void qspi_xip_enable(qspi_type* qspi_x, confirm_state new_state)
 {
+  register uint16_t dly=0;
   /* skip if state is no change */
   if(new_state == (confirm_state)(qspi_x->ctrl_bit.xipsel))
   {
     return;
   }
 
-  /* wait until tx fifo emoty*/
+  /* wait until tx fifo is empty*/
   while(qspi_x->fifosts_bit.txfifordy == 0);
 
+  /* make sure IO is transmitted */
+  dly = 64;
+  while(dly--)
+  {
+    __NOP();
+  }
+  
   /* flush and reset qspi state */
   qspi_x->ctrl_bit.xiprcmdf = 1;
 
   /* wait until action is finished */
   while(qspi_x->ctrl_bit.abort);
 
+  /* make sure IO is transmitted */
+  dly = 64;
+  while(dly--)
+  {
+    __NOP();
+  }
   /* set xip mode to new state */
   qspi_x->ctrl_bit.xipsel = new_state;
 

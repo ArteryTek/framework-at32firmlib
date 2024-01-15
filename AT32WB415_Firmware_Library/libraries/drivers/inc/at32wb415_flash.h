@@ -1,8 +1,6 @@
 /**
   **************************************************************************
   * @file     at32wb415_flash.h
-  * @version  v2.0.2
-  * @date     2022-06-28
   * @brief    at32wb415 flash header file
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -141,7 +139,7 @@ extern "C" {
   *         - FLASH_WAIT_CYCLE_3
   *         - FLASH_WAIT_CYCLE_4
   */
-#define flash_psr_set(wtcyc)     (FLASH->psr |= (uint32_t)(0x150 | wtcyc))
+#define flash_psr_set(wtcyc)     (FLASH->psr = (uint32_t)(0x150 | wtcyc))
 
 /** @defgroup FLASH_exported_types
   * @{
