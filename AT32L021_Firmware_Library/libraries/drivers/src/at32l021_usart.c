@@ -73,7 +73,7 @@ void usart_reset(usart_type* usart_x)
   *         - USART_DATA_7BITS
   *         - USART_DATA_8BITS
   *         - USART_DATA_9BITS.
-  *         noteï¼?
+  *         noteï¿½?
   *         - when parity check is disabled, the data bit width is the actual data bit number.
   *         - when parity check is enabled, the data bit width is the actual data bit number minus 1, and the MSB bit is replaced with the parity bit.
   * @param  stop_bit: stop bits transmitted
@@ -91,6 +91,7 @@ void usart_init(usart_type* usart_x, uint32_t baud_rate, usart_data_bit_num_type
   crm_usart_clock_source_type usart_clk;
   
   crm_clocks_freq_get(&clocks_freq);
+  apb_clock = clocks_freq.apb1_freq;
   if(usart_x == USART1)
   {
     usart_clk = crm_usart_clock_get(CRM_USART1);
